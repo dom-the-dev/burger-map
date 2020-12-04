@@ -6,14 +6,12 @@ import { useSelector } from 'react-redux';
 
 
 function Map(props) {
-    const MAPBOX_TOKEN = 'pk.eyJ1IjoiZG9tLXRoZS1kZXYiLCJhIjoiY2tpOTJ6dnUxMDUyYTJzcmtqNHlrYTgzYSJ9.A0f6gvahojPYcwQAidMaow';
     const burgers = useSelector(state => state.burgers);
     const [currentBurger, setCurrentBurger] = useState(0);
 
     const [viewport, setViewport] = useState();
 
     useEffect(() => {
-        console.log('nur 1 mal')
         setViewport({
             latitude: 52.510811,
             longitude: 13.457461,
@@ -24,7 +22,6 @@ function Map(props) {
     }, [])
 
     useEffect(() => {
-        console.log('wie oft')
         //     console.log('ändert sich ständig', burgers)
         //     if (burgers && burgers.length) {
 
@@ -82,7 +79,7 @@ function Map(props) {
                 height="100vh"
                 mapStyle="mapbox://styles/mapbox/dark-v9"
                 onViewportChange={nextViewport => setViewport(nextViewport)}
-                mapboxApiAccessToken={MAPBOX_TOKEN}>
+                mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}>
                 {burgers && burgers.length ? renderBurgerMarker(burgers) : null}
             </MapGL>
         </>
