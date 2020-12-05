@@ -9,22 +9,23 @@ function BurgerInfo({ burger }) {
     const ingridients = burger.getIngredientsString();
     return (
         <div style={info}>
-            {name ? name : null} <br />
-            {restaurant ? restaurant : null} <br />
-            {website ?
-                <a href={`https://${website}`}>
-                    {website}
-                </a>
-                : null
-            } <br />
-            <p>{description ? description : null}</p>
-            <p>Ingridients: {ingridients ? ingridients : null}</p>
-        </div>
+            <div style={{ fontWeight: 'bold', marginBottom: 10 }}>{name ? name : 'no name'}</div>
+            <div style={{ fontSize: 12 }}>Restaurant: {restaurant ? restaurant : 'no restaurant'} <br />
+            Website: {website ?
+                    <a style={{ color: 'orange' }} href={`${website}`}>
+                        {website}
+                    </a>
+                    : null
+                }
+            </div>
+            <p style={{ fontSize: 12 }}>{description ? description : 'no description'}</p>
+            <p style={{ fontSize: 12 }}>Ingridients: {ingridients ? ingridients : 'no ingridients'}</p>
+        </div >
     )
 }
 
 const info = {
-    position: 'absolute',
+    boxShadow: '2px 2px 3px 0px rgba(0,0,0,0.5)',
     padding: 10,
     borderRadius: 3,
     backgroundColor: 'rgba(0,0,0,0.7)',

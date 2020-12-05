@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons'
+import BurgerInfo from './BurgerInfo';
 
 function Controller({ nextBurger, currentBurgerIndex, burgers, setDarkTheme, darkTheme }) {
 
@@ -16,33 +17,35 @@ function Controller({ nextBurger, currentBurgerIndex, burgers, setDarkTheme, dar
     }
 
     return (
-        <div style={style}>
+        <div style={{ maxWidth: 350, position: 'absolute', zIndex: 2, top: 10, left: 10 }}>
+            <div style={style}>
+                <div style={menuBar}>
+                    <span style={arrowIcons} onClick={() => nextBurger(currentBurgerIndex - 1)}>
+                        <FontAwesomeIcon icon={faArrowLeft} />
+                    </span>
 
-            <div style={menuBar}>
-                <span style={arrowIcons} onClick={() => nextBurger(currentBurgerIndex - 1)}>
-                    <FontAwesomeIcon icon={faArrowLeft} />
-                </span>
+                    <select style={selectBox} defaultValue={currentBurgerIndex ? currentBurgerIndex : -1} onChange={(e) => nextBurger(parseInt(e.target.value))} name="burgers" id="select-burgers">
+                        {renderBurgers(burgers)}
+                    </select>
 
-                <select style={selectBox} defaultValue={currentBurgerIndex ? currentBurgerIndex : -1} onChange={(e) => nextBurger(parseInt(e.target.value))} name="burgers" id="select-burgers">
-                    {renderBurgers(burgers)}
-                </select>
-
-                <span style={arrowIcons} onClick={() => nextBurger(currentBurgerIndex + 1)}>
-                    <FontAwesomeIcon icon={faArrowRight} />
-                </span>
+                    <span style={arrowIcons} onClick={() => nextBurger(currentBurgerIndex + 1)}>
+                        <FontAwesomeIcon icon={faArrowRight} />
+                    </span>
+                </div>
             </div>
+
+            <BurgerInfo burger={burgers[currentBurgerIndex]} />
         </div>
     )
 }
 
 const style = {
-    position: 'absolute',
     backgroundColor: 'rgba(0,0,0,0.7)',
     borderRadius: 3,
-    padding: '20px 10px',
-    zIndex: 2,
+    padding: '10px 5px',
     top: 20,
     left: 20,
+    marginBottom: 10,
     boxShadow: '2px 2px 3px 0px rgba(0,0,0,0.5)'
 }
 
@@ -55,7 +58,7 @@ const menuBar = {
 
 const arrowIcons = {
     color: 'white',
-    fontSize: 24,
+    fontSize: 14,
     cursor: 'pointer',
     margin: '0 10px'
 }
@@ -65,7 +68,8 @@ const selectBox = {
     background: 'transparent',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: '18px'
+    textTransform: 'uppercase',
+    fontSize: 14
 }
 
 Controller.propTypes = {

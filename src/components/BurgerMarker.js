@@ -1,16 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import BurgerInfo from './BurgerInfo'
 import burgerIcon from '../images/burger.svg'
-function BurgerMarker({ burger, setCurrentBurgerIndex, currentBurgerIndex, index, name }) {
+function BurgerMarker() {
     return (
-        <div onClick={() => setCurrentBurgerIndex(index)}>
-            {currentBurgerIndex === index ?
-                <BurgerInfo burger={burger} />
-                : null
-            }
-            <img style={icon} src={burgerIcon} alt="burger-marker" />
-        </div>
+        <img style={icon} src={burgerIcon} alt="burger-marker" />
     )
 }
 
