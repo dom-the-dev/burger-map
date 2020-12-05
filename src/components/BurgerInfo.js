@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Burger from '../repository/Burger';
 
 function BurgerInfo({ burger }) {
     const name = burger.getName();
@@ -35,7 +36,7 @@ const info = {
 }
 
 BurgerInfo.propTypes = {
-
+    burger: PropTypes.instanceOf(Burger).isRequired
 }
 
 export default BurgerInfo
