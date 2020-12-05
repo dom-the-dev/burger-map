@@ -1,30 +1,22 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import burger from '../images/burger.svg'
-
-function BurgerMarker(props) {
-
-    const [showInfo, setShowInfo] = useState(false);
-
-    const info = {
-        position: 'absolute',
-        background: 'red',
-        top: '-50px',
-        color: 'white'
-    }
-
-    const icon = {
-        maxWidth: '20px',
-    }
-
+import BurgerInfo from './BurgerInfo'
+import burgerIcon from '../images/burger.svg'
+function BurgerMarker({ burger, setCurrentBurgerIndex, currentBurgerIndex, index, name }) {
     return (
-        <div onClick={() => setShowInfo(!showInfo)}>
-            {showInfo ? <div style={info}>{props.name}</div> : null}
-            <img style={icon} src={burger} alt="burger-marker" />
+        <div onClick={() => setCurrentBurgerIndex(index)}>
+            {currentBurgerIndex === index ?
+                <BurgerInfo burger={burger} />
+                : null
+            }
+            <img style={icon} src={burgerIcon} alt="burger-marker" />
         </div>
     )
 }
 
+const icon = {
+    maxWidth: '20px',
+}
 BurgerMarker.propTypes = {
     name: PropTypes.string
 }

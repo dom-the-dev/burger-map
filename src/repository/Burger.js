@@ -15,6 +15,29 @@ export default class Burger {
         return this.id;
     }
 
+    getWeb() {
+        return this.website;
+    }
+
+    getRestaurant() {
+        return this.restaurant;
+    }
+
+    getIngredientsString() {
+        return this.ingredients.join(', ')
+    }
+
+    getDescription() {
+        return this.description;
+    }
+    // getWebsite() {
+    //     return this.website;
+    // }
+
+    getIngredients() {
+        return this.ingredients
+    }
+
     getName() {
         return this.name;
     }
