@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import burger from '../images/burger.svg'
 
 function BurgerMarker(props) {
 
@@ -12,21 +13,14 @@ function BurgerMarker(props) {
         color: 'white'
     }
 
-    const style = {
-        width: '20px',
-        height: '20px',
-        backgroundColor: 'red',
-        borderRadius: '25px',
-        color: 'white',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
+    const icon = {
+        maxWidth: '20px',
     }
 
     return (
         <div onClick={() => setShowInfo(!showInfo)}>
             {showInfo ? <div style={info}>{props.name}</div> : null}
-            <div style={style}>•</div>
+            <img style={icon} src={burger} alt="burger-marker" />
         </div>
     )
 }

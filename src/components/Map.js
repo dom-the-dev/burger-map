@@ -1,44 +1,44 @@
 import React, { useState, useEffect } from 'react'
-import PropTypes from 'prop-types'
 import MapGL, { Marker } from 'react-map-gl';
 import BurgerMarker from './BurgerMarker';
 import { useSelector } from 'react-redux';
+import Controller from './Controller'
 
+const LIGHT_MAP = "mapbox://styles/mapbox/light-v8"
+const DARK_MAP = "mapbox://styles/mapbox/dark-v9"
 
-function Map(props) {
+function Map() {
     const burgers = useSelector(state => state.burgers);
     const [currentBurger, setCurrentBurger] = useState(0);
+    const [theme, setTheme] = useState(LIGHT_MAP);
 
-    const [viewport, setViewport] = useState();
-
-    useEffect(() => {
-        setViewport({
-            latitude: 52.510811,
-            longitude: 13.457461,
-            zoom: 10,
-            bearing: 0,
-            pitch: 0
-        })
-    }, [])
+    const [viewport, setViewport] = useState({
+        latitude: 52.510811,
+        longitude: 13.457461,
+        zoom: 2,
+        bearing: 0,
+        pitch: 0
+    });
 
     useEffect(() => {
-        //     console.log('ändert sich ständig', burgers)
-        //     if (burgers && burgers.length) {
+        if (burgers.length) {
+            console.log('burgers', burgers)
+            console.log('burgers', burgers[0].lat)
 
-        //         const lat = burgers[0].getLat();
-        //         const long = burgers[0].getLong();
+            // const lat = burgers[0].getLat();
+            // const long = burgers[0].getLong();
 
-        //         if (lat && long) {
-        //             setViewport({
-        //                 ...viewport,
-        //                 latitude: lat,
-        //                 longitude: long
-        //             })
-        //         }
-        //     }
+            // if (lat && long) {
+            //     setViewport({
+            //         ...viewport,
+            //         latitude: lat,
+            //         longitude: long
+            //     })
+            // }
+        }
     }, [burgers])
 
-    const renderBurgerMarker = (burgers) => {
+    const renderMarker = (burgers) => {
         return burgers.filter(burger => {
             // SKIP IF LAT OR LONG IS NOT SET
             if (!burger.getLat() && !burger.getLong()) {
@@ -63,31 +63,40 @@ function Map(props) {
         }
         setViewport({
             ...viewport,
+            zoom: 10,
             latitude: burgers[nextBurger].getLat(),
             longitude: burgers[nextBurger].getLong()
         })
         setCurrentBurger(nextBurger);
     }
 
+    const toggleTheme = () => {
+        if (theme === LIGHT_MAP) {
+            setTheme(DARK_MAP)
+        } else {
+            setTheme(LIGHT_MAP)
+        }
+    }
+
     return (
         <>
-            <button onClick={() => nextBurger(currentBurger - 1)}>Prev Burger</button>
-            <button onClick={() => nextBurger(currentBurger + 1)}>Next Burger</button>
+            <Controller
+                toggleTheme={toggleTheme}
+                nextBurger={nextBurger}
+                currentBurger={currentBurger}
+                burgers={burgers}
+            />
             <MapGL
                 {...viewport}
                 width="100vw"
                 height="100vh"
-                mapStyle="mapbox://styles/mapbox/dark-v9"
+                mapStyle={theme}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}>
-                {burgers && burgers.length ? renderBurgerMarker(burgers) : null}
+                {burgers && burgers.length ? renderMarker(burgers) : null}
             </MapGL>
         </>
     )
-}
-
-Map.propTypes = {
-
 }
 
 export default Map
