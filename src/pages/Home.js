@@ -20,11 +20,11 @@ function Home() {
     }, [dispatch])
 
     if (isLoading) {
-        return <Loading />
+        return <Loading text="Loading burgers.." />
     }
 
     if (!burgers.length) {
-        return 'empty'
+        return <Loading text="No burgers available :(" />
     }
 
     return (

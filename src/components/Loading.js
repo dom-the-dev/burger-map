@@ -1,7 +1,7 @@
 import React from 'react'
 import burger from '../images/burger.svg'
 
-export default function Loading() {
+export default function Loading({ text }) {
 
     const style = {
         width: '100%',
@@ -20,7 +20,7 @@ export default function Loading() {
     return (
         <div style={style}>
             <img style={icon} src={burger} alt="burger-marker" />
-            <div>Loading burgers..</div>
+            <div>{text}</div>
         </div>
     )
 }

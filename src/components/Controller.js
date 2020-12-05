@@ -17,7 +17,7 @@ function Controller({ nextBurger, currentBurgerIndex, burgers, setDarkTheme, dar
     }
 
     return (
-        <div style={{ maxWidth: 350, position: 'absolute', zIndex: 2, top: 10, left: 10 }}>
+        <div style={wrapper}>
             <div style={style}>
                 <div style={menuBar}>
                     <span style={arrowIcons} onClick={() => nextBurger(currentBurgerIndex - 1)}>
@@ -39,10 +39,18 @@ function Controller({ nextBurger, currentBurgerIndex, burgers, setDarkTheme, dar
     )
 }
 
+const wrapper = {
+    maxWidth: 400,
+    position: 'absolute',
+    zIndex: 2,
+    top: 10,
+    left: 10
+}
+
 const style = {
     backgroundColor: 'rgba(0,0,0,0.7)',
     borderRadius: 3,
-    padding: '10px 5px',
+    padding: '10px',
     top: 20,
     left: 20,
     marginBottom: 10,

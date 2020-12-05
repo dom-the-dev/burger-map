@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MapGL, { Marker } from 'react-map-gl';
+import MapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 import { useSelector } from 'react-redux';
 
 import BurgerMarker from './BurgerMarker';
@@ -27,7 +27,6 @@ function Map() {
                 <Marker key={burger.getId()} latitude={burger.getLat()} longitude={burger.getLong()} offsetLeft={-20} offsetTop={-10}>
                     <BurgerMarker
                         index={index}
-                        currentBurgerIndex={currentBurgerIndex}
                         setCurrentBurgerIndex={setCurrentBurgerIndex}
                         burger={burger}
                     />
@@ -71,6 +70,8 @@ function Map() {
                 height="100vh"
                 mapStyle={darkTheme ? DARK_MAP : LIGHT_MAP}
                 onLoad={() => renderMarker(burgers)}
+                transitionDuration={2000}
+                transitionInterpolator={new FlyToInterpolator()}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             >
