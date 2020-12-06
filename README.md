@@ -3,7 +3,7 @@
 Create-React-App to show burger locations on a Map.
 
 Special thank's to [Ania Kubow's](https://github.com/kubowania) who provides the [burger-api](https://github.com/kubowania/burger-api) for this project.
-You can find her video tutorial [here](https://www.youtube.com/watch?v=FLnxgSZ0DG4&feature=youtu.be) and visit the live API [here](https://my-burger-api.herokuapp.com/burgers).
+You can find her tutorial how to 'Make your own an API' [here](https://www.youtube.com/watch?v=FLnxgSZ0DG4&feature=youtu.be) and visit the live API [here](https://my-burger-api.herokuapp.com/burgers).
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

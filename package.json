@@ -1,6 +1,7 @@
 {
   "name": "burger-map",
   "version": "0.1.0",
+  "homepage": "https://dom-the-dev.github.io/burger-map/",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.32",
@@ -13,6 +14,7 @@
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.5.0",
     "axios": "^0.21.0",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-map-gl": "^5.2.10",
