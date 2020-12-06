@@ -1,15 +1,17 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import MapGL, { Marker, FlyToInterpolator } from 'react-map-gl';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types'
 
+import Burger from '../repository/Burger';
 import BurgerMarker from './BurgerMarker';
 import Controller from './Controller'
 
-const LIGHT_MAP = "mapbox://styles/mapbox/light-v8"
-const DARK_MAP = "mapbox://styles/mapbox/dark-v9"
+const STREETS_MAP = "mapbox://sprites/mapbox/streets-v8"
 
 function Map() {
     const burgers = useSelector(state => state.burgers);
+    const mapRef = useRef(null);
 
     const [viewport, setViewport] = useState({});
     const [currentBurgerIndex, setCurrentBurgerIndex] = useState(0);
@@ -27,6 +29,7 @@ function Map() {
                 <Marker key={burger.getId()} latitude={burger.getLat()} longitude={burger.getLong()} offsetLeft={-20} offsetTop={-10}>
                     <BurgerMarker
                         index={index}
+                        currentBurgerIndex={currentBurgerIndex}
                         setCurrentBurgerIndex={setCurrentBurgerIndex}
                         burger={burger}
                     />
@@ -66,12 +69,12 @@ function Map() {
             />
             <MapGL
                 {...viewport}
+                ref={mapRef}
                 width="100vw"
                 height="100vh"
-                mapStyle={darkTheme ? DARK_MAP : LIGHT_MAP}
-                onLoad={() => renderMarker(burgers)}
+                mapStyle={STREETS_MAP}
                 transitionDuration={2000}
-                transitionInterpolator={new FlyToInterpolator()}
+                transitionInterpolator={new FlyToInterpolator({ curve: 3, speed: 100 })}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             >
@@ -82,6 +85,10 @@ function Map() {
             </MapGL>
         </>
     )
+}
+
+Map.propTypes = {
+    burgers: PropTypes.arrayOf(PropTypes.instanceOf(Burger)).isRequired
 }
 
 export default Map

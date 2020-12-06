@@ -19,6 +19,11 @@ export default class Burger {
         return this.website;
     }
 
+    getAddressString() {
+        let address = this.addresses[0];
+        return `${address.line1 ? address.line1 : ''} ${address.line2 ? address.line2 : ''} ${address.number ? address.number : ''} ${address.postCode ? address.postCode : ''} ${address.country ? address.country : ''}`;
+    }
+
     getRestaurant() {
         return this.restaurant;
     }
@@ -30,9 +35,6 @@ export default class Burger {
     getDescription() {
         return this.description;
     }
-    // getWebsite() {
-    //     return this.website;
-    // }
 
     getIngredients() {
         return this.ingredients

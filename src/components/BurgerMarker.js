@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import burgerIcon from '../images/burger.svg'
-function BurgerMarker({ setCurrentBurgerIndex, index }) {
+function BurgerMarker({ currentBurgerIndex, setCurrentBurgerIndex, index }) {
     return (
         <div onClick={() => setCurrentBurgerIndex(index)}>
-            <img style={icon} src={burgerIcon} alt="burger-marker" />
+            <img style={currentBurgerIndex === index ? { ...icon, backgroundColor: 'orange', borderRadius: 5, padding: 5 } : icon} src={burgerIcon} alt="burger-marker" />
         </div>
     )
 }

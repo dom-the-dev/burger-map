@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub, faTwitter } from '@fortawesome/free-brands-svg-icons'
-import { faToggleOff, faToggleOn } from '@fortawesome/free-solid-svg-icons'
 
 import { getBurgers } from '../redux/actions';
 import Loading from '../components/Loading';
@@ -30,11 +29,6 @@ function Home() {
     return (
         <div>
             <div style={menu}>
-                {/* <span onClick={() => setDarkTheme(!darkTheme)}>
-                    {darkTheme ? <FontAwesomeIcon icon={faToggleOn} />
-                        : <FontAwesomeIcon icon={faToggleOff} />
-                    }
-                </span> */}
                 <a style={socialIcons} href="https://github.com/dom-the-dev/burger-map">
                     <FontAwesomeIcon icon={faGithub} />
                 </a>

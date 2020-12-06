@@ -5,6 +5,7 @@ import Burger from '../repository/Burger';
 function BurgerInfo({ burger }) {
     const name = burger.getName();
     const website = burger.getWeb();
+    const address = burger.getAddressString();
     const description = burger.getDescription();
     const restaurant = burger.getRestaurant();
     const ingridients = burger.getIngredientsString();
@@ -17,7 +18,8 @@ function BurgerInfo({ burger }) {
                         {website}
                     </a>
                     : null
-                }
+                } <br />
+                {address}
             </div>
             <p style={{ fontSize: 12 }}>{description ? description : 'no description'}</p>
             <p style={{ fontSize: 12 }}>Ingridients: {ingridients ? ingridients : 'no ingridients'}</p>
