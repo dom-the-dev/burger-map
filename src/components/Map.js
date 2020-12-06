@@ -73,8 +73,8 @@ function Map() {
                 width="100vw"
                 height="100vh"
                 mapStyle={STREETS_MAP}
-                transitionDuration={2000}
-                transitionInterpolator={new FlyToInterpolator({ curve: 3, speed: 100 })}
+                // transitionDuration={2000}
+                // transitionInterpolator={new FlyToInterpolator({ curve: 3, speed: 100 })}
                 onViewportChange={nextViewport => setViewport(nextViewport)}
                 mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
             >

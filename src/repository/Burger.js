@@ -21,7 +21,7 @@ export default class Burger {
 
     getAddressString() {
         let address = this.addresses[0];
-        return `${address.line1 ? address.line1 : ''} ${address.line2 ? address.line2 : ''} ${address.number ? address.number : ''} ${address.postCode ? address.postCode : ''} ${address.country ? address.country : ''}`;
+        return `${address.line1 ? address.line1 : ''} ${address.number ? address.number : ''}${address.line2 ? ', ' + address.line2 : ''}${address.postCode ? ', ' + address.postCode : ''}${address.country ? ', ' + address.country : ''}`;
     }
 
     getRestaurant() {
